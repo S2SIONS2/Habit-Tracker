@@ -14,8 +14,10 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { useEffect, useState, type ChangeEvent } from "react";
+import { useEffect, useRef, useState, type ChangeEvent } from "react";
 import { useSignUp } from "@/hooks/mutations/use-sign-up";
+import generateErrorMessage from "@/lib/error";
+import { toast } from "sonner";
 
 export function SignupForm({
   className,
@@ -28,12 +30,24 @@ export function SignupForm({
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
 
-  const { mutate: signUp } = useSignUp();
+  const eamilInput = useRef<HTMLInputElement>(null);
+  const pwInput = useRef<HTMLInputElement>(null);
+  const pwCheckInput = useRef<HTMLInputElement>(null);
+  const nameInput = useRef<HTMLInputElement>(null);
+
+  const { mutate: signUp, isPending: isSignUpPending } = useSignUp({
+    onError: (error) => {
+      const message = generateErrorMessage(error);
+      toast.error(message, {
+        position: "top-center",
+      });
+    },
+  });
 
   // 입력된 비밀번호 체크
   useEffect(() => {
     if (password !== checkPw) {
-      setCheckPwNoti("incorrect password");
+      setCheckPwNoti("incorrect the password");
     } else {
       setCheckPwNoti("");
     }
@@ -51,11 +65,21 @@ export function SignupForm({
   const handleSignUpClick = (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
-    if (email.trim() === "") return;
-    if (password.trim() === "") return;
+    if (name.trim() === "") {
+      alert("Please check the Name");
+      return nameInput.current?.focus();
+    }
+    if (email.trim() === "") {
+      alert("Please check the email");
+      return eamilInput.current?.focus();
+    }
+    if (password.trim() === "") {
+      alert("Please check the password");
+      return pwInput.current?.focus();
+    }
     if (password !== checkPw) {
-      alert("please check the password");
-      return;
+      alert("Incorrect the password");
+      return pwCheckInput.current?.focus();
     }
 
     signUp({
@@ -85,9 +109,11 @@ export function SignupForm({
                     Full Name
                   </FieldLabel>
                   <Input
+                    disabled={isSignUpPending}
                     id="name"
                     type="text"
                     value={name}
+                    ref={nameInput}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="John Doe"
                     required
@@ -99,9 +125,11 @@ export function SignupForm({
                     Email
                   </FieldLabel>
                   <Input
+                    disabled={isSignUpPending}
                     id="email"
                     type="email"
                     value={email}
+                    ref={eamilInput}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="m@example.com"
                     required
@@ -118,10 +146,12 @@ export function SignupForm({
                         Password
                       </FieldLabel>
                       <Input
+                        disabled={isSignUpPending}
                         id="password"
                         type="password"
                         minLength={6}
                         value={password}
+                        ref={pwInput}
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="at least 6 characters."
                         required
@@ -139,6 +169,7 @@ export function SignupForm({
                         id="confirm-password"
                         type="password"
                         value={checkPw}
+                        ref={pwCheckInput}
                         onChange={(e) => setCheckPw(e.target.value)}
                         required
                       />
@@ -156,6 +187,7 @@ export function SignupForm({
                 </Field>
                 <Field>
                   <Button
+                    disabled={isSignUpPending}
                     type="submit"
                     onClick={handleSignUpClick}
                     className="cursor-pointer"

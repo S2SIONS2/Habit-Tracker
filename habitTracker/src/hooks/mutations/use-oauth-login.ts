@@ -9,11 +9,11 @@ export function usePwLogin(callbacks?: UseMutationCallback) {
   return useMutation({
     mutationFn: pwLogin,
     onSuccess: () => {
+      console.log("로그인 완료");
       navigate("/");
     },
     onError: (error) => {
       console.error(error);
-
       if (callbacks?.onError) callbacks.onError(error);
     },
   });
