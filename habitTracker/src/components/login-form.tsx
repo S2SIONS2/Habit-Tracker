@@ -17,8 +17,8 @@ export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
-  const [email, setEmail] = useState("");
-  const [pw, setPw] = useState("");
+  const [email, setEmail] = useState("solee9802@gmail.com");
+  const [pw, setPw] = useState("123456");
 
   const emailInput = useRef<HTMLInputElement>(null);
   const pwInput = useRef<HTMLInputElement>(null);
