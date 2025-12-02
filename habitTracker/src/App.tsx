@@ -1,8 +1,13 @@
 import "./App.css";
+import SessionProvider from "./provider/session-provider";
 import RootRoute from "./root-route";
 
 function App() {
-  return <RootRoute />;
+  return (
+    <SessionProvider>
+      <RootRoute />;
+    </SessionProvider>
+  )
 }
 
 export default App;
