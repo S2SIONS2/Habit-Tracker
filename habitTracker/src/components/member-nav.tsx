@@ -1,5 +1,6 @@
-// src/components/layout/MemberNav.tsx
-import React, { useState } from "react";
+import { signOut } from "@/api/auth";
+import { useState } from "react";
+// import { useNavigate } from "react-router";
 
 type NavKey =
   | "overview"
@@ -27,6 +28,16 @@ const NAV_ITEMS: NavItem[] = [
 export default function MemberNav() {
   // 그냥 데모용 active 상태 (나중에 라우터랑 연결해서 바꿔 써도 됨)
   const [activeKey, setActiveKey] = useState<NavKey>("calendar");
+
+  // const nav = useNavigate();
+
+  function handleClick(key: NavKey) {
+    switch (key) {
+      case "logout":
+        signOut();
+        break;
+    }
+  }
 
   return (
     <aside className="hidden h-screen w-18 shrink-0 sm:flex sm:w-20 lg:w-24 relative">
@@ -81,7 +92,10 @@ export default function MemberNav() {
               <button
                 key={item.key}
                 type="button"
-                onClick={() => setActiveKey(item.key)}
+                onClick={() => {
+                  handleClick(item.key);
+                  setActiveKey(item.key);
+                }}
                 className={[
                   "flex h-11 w-11 items-center justify-center rounded-2xl transition-all duration-150",
                   isActive
