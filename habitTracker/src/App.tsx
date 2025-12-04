@@ -5,9 +5,9 @@ import RootRoute from "./root-route";
 function App() {
   return (
     <SessionProvider>
-      <RootRoute />;
+      <RootRoute />
     </SessionProvider>
-  )
+  );
 }
 
 export default App;

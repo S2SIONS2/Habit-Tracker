@@ -7,9 +7,9 @@ export default function MemberOnlyLayout() {
   if (!session) return <Navigate to={"/login"} replace={true} />;
 
   return (
-    <div className="flex min-h-screen bg-slate-50 relative">
+    <div className="flex h-screen bg-slate-50 relative overflow-hidden">
       <MemberNav />
-      <main className="flex-1 px-4 py-6 sm:px-8">
+      <main className="flex-1 px-4 py-6 sm:px-8 flex flex-col overflow-hidden">
         <Outlet />
       </main>
     </div>

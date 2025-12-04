@@ -40,8 +40,8 @@ export default function MemberNav() {
   }
 
   return (
-    <aside className="hidden h-screen w-18 shrink-0 sm:flex sm:w-20 lg:w-24 relative">
-      <nav className="flex w-full flex-col items-center py-6 absolute h-[95%] top-1/2 -translate-y-1/2 left-[2vw] rounded-[2vw] bg-slate-950 text-slate-100">
+    <aside className="w-[120px] h-screen shrink-0 sm:w-20 lg:w-24 flex items-center justify-center ">
+      <nav className="w-[90px] h-[95%] flex flex-col items-center py-6 rounded-[2vw] bg-slate-950 text-slate-100">
         {/* 로고 영역 */}
         <div className="mb-6 flex h-10 w-10 items-center justify-center rounded-2xl bg-orange-500/90 shadow-lg">
           {/* 작은 책/체크 아이콘 느낌 */}
