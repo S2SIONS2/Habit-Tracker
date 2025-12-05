@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { addWeeks, subWeeks, isSameMonth, startOfMonth, addDays, subDays } from "date-fns";
+import { 
+  addWeeks, // 주어진 날짜에 지정된 주 수 더함
+  subWeeks, // 주어진 날짜에 지정된 주 수 뺌
+  isSameMonth, // 두 날짜가 같은 달인지 확인
+  startOfMonth, // 주어진 날짜의 달의 첫 날짜 반환
+  addDays, // 주어진 날짜에 지정된 일 수 더함
+  subDays // 주어진 날짜에 지정된 일 수 뺌
+} from "date-fns";
 import WeekCalendar from "./week-calendar";
 import MonthCalendar from "./month-calendar";
 import DayCalendar from "./day-calendar";
@@ -8,8 +15,8 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 type ViewMode = "month" | "day";
 
 export default function Calendar() {
-  const [currentDate, setCurrentDate] = useState(() => new Date());
-  const [viewMode, setViewMode] = useState<ViewMode>("month");
+  const [currentDate, setCurrentDate] = useState(() => new Date()); // 현재 날짜
+  const [viewMode, setViewMode] = useState<ViewMode>("day"); // 보여줄 달력 모드(월/일)
 
   // Week Navigation (Main View)
   const handleWeekNavigate = (direction: "prev" | "next") => {
@@ -22,10 +29,10 @@ export default function Calendar() {
 
   // Month Navigation (Sidebar)
   const handleMonthNavigate = (newDate: Date) => {
-    if (isSameMonth(newDate, new Date())) {
-      setCurrentDate(new Date());
+    if (isSameMonth(newDate, new Date())) { // 현재 날짜와 같은 달이면
+      setCurrentDate(new Date()); // 현재 날짜로 설정
     } else {
-      setCurrentDate(startOfMonth(newDate));
+      setCurrentDate(startOfMonth(newDate)); // 해당 달의 첫 날짜로 설정
     }
   };
 
