@@ -1,16 +1,16 @@
 import { 
-  format, 
-  startOfMonth, 
-  endOfMonth, 
-  startOfWeek, 
-  endOfWeek, 
-  eachDayOfInterval, 
-  isSameMonth, 
-  isSameDay, 
-  isToday,
-  isSameWeek,
-  addMonths,
-  subMonths
+  format, // date formatting
+  startOfMonth, // 달력 첫날
+  endOfMonth, // 달력 마지막날
+  startOfWeek, // 주의 첫날
+  endOfWeek, // 주의 마지막날
+  eachDayOfInterval, // 주어진 날짜 사이의 모든 날짜 반환
+  isSameMonth, // 두 날짜가 같은 달인지 확인
+  isSameDay, // 두 날짜가 같은 날짜인지 확인
+  isToday, // 현재 날짜 확인
+  isSameWeek, // 두 날짜가 같은 주인지 확인
+  addMonths, // 주어진 날짜에 지정된 달 수 더함
+  subMonths // 주어진 날짜에 지정된 달 수 뺌
 } from "date-fns";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -25,7 +25,7 @@ export default function MonthCalendar({ currentDate, onNavigate }: MonthCalendar
   const startDate = startOfWeek(monthStart);
   const endDate = endOfWeek(monthEnd);
 
-  const calendarDays = eachDayOfInterval({
+  const calendarDays = eachDayOfInterval({ // 주어진 날짜 사이의 모든 날짜 반환
     start: startDate,
     end: endDate,
   });
