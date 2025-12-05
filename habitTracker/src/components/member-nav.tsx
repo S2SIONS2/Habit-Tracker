@@ -40,7 +40,7 @@ export default function MemberNav() {
   }
 
   return (
-    <aside className="w-[120px] h-screen shrink-0 sm:w-20 lg:w-24 flex items-center justify-center ">
+    <aside className="min-w-[120px] h-screen shrink-0 sm:w-20 lg:w-24 flex items-center justify-center ">
       <nav className="w-[90px] h-[95%] flex flex-col items-center py-6 rounded-[2vw] bg-slate-950 text-slate-100">
         {/* 로고 영역 */}
         <div className="mb-6 flex h-10 w-10 items-center justify-center rounded-2xl bg-orange-500/90 shadow-lg">

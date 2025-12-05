@@ -68,7 +68,7 @@ export default function MonthCalendar({ currentDate, onNavigate }: MonthCalendar
         ))}
       </div>
 
-      <div className="flex-1 grid grid-cols-7 grid-rows-6">
+      <div className="flex-1 grid grid-cols-7">
         {calendarDays.map((day, dayIdx) => {
           const isCurrentMonth = isSameMonth(day, monthStart);
           const isSelected = isSameDay(day, currentDate);
