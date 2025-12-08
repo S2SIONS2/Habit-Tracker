@@ -1,14 +1,13 @@
 import { useModalStore } from "@/store/useModalStore";
 
 export default function ModalLayout() {
-    const { isOpen, content, closeModal } = useModalStore();
+  const { isOpen, content } = useModalStore();
 
-    if (!isOpen) return null;
+  if (!isOpen) return null;
 
-    return (
-        <div>
-            <button onClick={closeModal}>Close</button>
-            <div>{content}</div>
-        </div>
-    )
+  return (
+    <div className="fixed inset-0 bg-[rgba(0,0,0,0.5)] bg-opacity-50 flex items-center justify-center z-50">
+      <div className="bg-white p-6 rounded-lg shadow-lg">{content}</div>
+    </div>
+  );
 }

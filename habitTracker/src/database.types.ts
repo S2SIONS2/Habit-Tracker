@@ -14,6 +14,33 @@ export type Database = {
   }
   public: {
     Tables: {
+      daily_tasks: {
+        Row: {
+          created_at: string
+          id: number
+          is_done: boolean
+          name: string
+          task_date: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          is_done?: boolean
+          name: string
+          task_date: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          is_done?: boolean
+          name?: string
+          task_date?: string
+          user_id?: string
+        }
+        Relationships: []
+      },
       userinfo: {
         Row: {
           created_at: string | null
