@@ -25,14 +25,14 @@ const WEEKDAYS = [
   { label: "S", value: 6 },
 ];
 
-export default function AddHabit() {
+export default function AddHabit({ selectedDate }: { selectedDate?: string }) {
   const { closeModal } = useModalStore();
 
   const today = new Date().toISOString().split("T")[0];
 
   const [type, setType] = useState<HabitType>("task");
   const [name, setName] = useState("");
-  const [date, setDate] = useState(today || "");
+  const [date, setDate] = useState(selectedDate || today);
   const [isDone, setIsDone] = useState(false);
   const [selectedDays, setSelectedDays] = useState<number[]>([]);
 

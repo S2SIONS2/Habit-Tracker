@@ -4,10 +4,17 @@ import {
   endOfWeek,
   eachDayOfInterval,
   isSameDay,
-  isToday
+  isToday,
 } from "date-fns";
+import type { DailyTask } from "@/types/daily-tasks";
 
-export default function WeekCalendar({ currentDate }: { currentDate: Date }) {
+export default function WeekCalendar({
+  currentDate,
+  dailyTasks,
+}: {
+  currentDate: Date;
+  dailyTasks?: DailyTask[];
+}) {
   const start = startOfWeek(currentDate);
   const end = endOfWeek(currentDate);
 
@@ -43,11 +50,13 @@ export default function WeekCalendar({ currentDate }: { currentDate: Date }) {
               <span
                 className={`
                   w-10 h-10 flex items-center justify-center rounded-full text-lg
-                  ${isTodayDate
-                    ? "bg-blue-600 text-white font-bold"
-                    : isSelected
+                  ${
+                    isTodayDate
+                      ? "bg-blue-600 text-white font-bold"
+                      : isSelected
                       ? "text-blue-600 font-bold"
-                      : "text-gray-900"}
+                      : "text-gray-900"
+                  }
                 `}
               >
                 {format(day, "d")}
@@ -56,6 +65,21 @@ export default function WeekCalendar({ currentDate }: { currentDate: Date }) {
               {/* Placeholder for habits/events */}
               <div className="mt-4 w-full px-2 space-y-1">
                 {/* <div className="h-1.5 w-full bg-blue-100 rounded-full" /> */}
+                <ul>
+                  {dailyTasks
+                    ?.filter(
+                      (task) =>
+                        task.task_date.slice(0, 10) ===
+                        format(day, "yyyy-MM-dd")
+                    )
+                    .map((task) => (
+                      <li key={task.id}>
+                        <span className="text-xs text-gray-500">
+                          {task.name}
+                        </span>
+                      </li>
+                    ))}
+                </ul>
               </div>
             </div>
           );
