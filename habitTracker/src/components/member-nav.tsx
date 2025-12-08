@@ -41,9 +41,9 @@ export default function MemberNav() {
 
   return (
     <aside className="min-w-[120px] h-screen shrink-0 sm:w-20 lg:w-24 flex items-center justify-center ">
-      <nav className="w-[90px] h-[95%] flex flex-col items-center py-6 rounded-[2vw] bg-slate-950 text-slate-100">
+      <nav className="w-[90px] h-[95%] flex flex-col items-center py-6 rounded-[2vw] bg-[#f8f1db] text-slate-100">
         {/* 로고 영역 */}
-        <div className="mb-6 flex h-10 w-10 items-center justify-center rounded-2xl bg-orange-500/90 shadow-lg">
+        <div className="mb-6 flex h-10 w-10 items-center justify-center rounded-2xl bg-[#f9bac8] shadow-lg">
           {/* 작은 책/체크 아이콘 느낌 */}
           <svg
             className="h-6 w-6 text-white"
@@ -73,8 +73,8 @@ export default function MemberNav() {
                 className={[
                   "flex h-11 w-11 items-center justify-center rounded-2xl transition-all duration-150",
                   isActive
-                    ? "bg-orange-500 text-white shadow-lg shadow-orange-500/40"
-                    : "bg-transparent text-slate-400 hover:bg-slate-800/70 hover:text-white",
+                    ? "bg-[#f9bac8] text-white shadow-lg shadow-yellow-500/40"
+                    : "bg-transparent text-slate-700 hover:bg-slate-800/70 hover:text-white",
                 ].join(" ")}
               >
                 <span className="sr-only">{item.label}</span>
@@ -99,7 +99,7 @@ export default function MemberNav() {
                 className={[
                   "flex h-11 w-11 items-center justify-center rounded-2xl transition-all duration-150",
                   isActive
-                    ? "bg-orange-500 text-white shadow-lg shadow-orange-500/40"
+                    ? "bg-[#f9bac8] text-white shadow-lg shadow-yellow-500/40"
                     : "bg-transparent text-slate-400 hover:bg-slate-800/70 hover:text-white",
                 ].join(" ")}
               >
