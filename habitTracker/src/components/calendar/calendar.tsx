@@ -54,13 +54,13 @@ export default function Calendar({ dailyTasks }: { dailyTasks?: DailyTask[] }) {
   return (
     <div className="flex flex-col h-full bg-slate-50 overflow-hidden font-sans">
       {/* Global Header */}
-      <header className="flex items-center justify-between px-6 py-4 mx-4 mt-4 bg-white/80 backdrop-blur-md rounded-2xl shadow-sm border border-white/50 shrink-0 z-10">
+      <header className="flex items-center justify-between mx-4 mt-4">
         <div className="flex items-center gap-3">
           <h1 className="text-2xl font-bold text-gray-800 tracking-tight">
-            My <span className="text-rose-400">Habit Calendar</span>
+            My <span className="text-rose-400">Calendar</span>
           </h1>
           <button
-            className="ml-4 bg-gray-800 text-white px-5 py-2.5 rounded-full text-sm font-bold shadow-lg shadow-gray-200 hover:scale-105 active:scale-95 transition-all flex items-center gap-2"
+            className="ml-4 bg-white text-rose-600 px-5 py-2.5 rounded-sm text-sm font-bold hover:scale-105 active:scale-95 transition-all flex items-center gap-2"
             onClick={() => openModal(<AddHabit />)}
           >
             <span>+</span> Add Habit
@@ -68,10 +68,10 @@ export default function Calendar({ dailyTasks }: { dailyTasks?: DailyTask[] }) {
         </div>
         <div className="flex items-center gap-4">
           {/* View Toggle */}
-          <div className="flex bg-gray-100/80 p-1 rounded-full border border-gray-200/50">
+          <div className="flex bg-gray-100/80 p-1 rounded-sm border border-gray-200/50">
             <button
               onClick={() => setViewMode("month")}
-              className={`px-4 py-1.5 text-sm font-bold rounded-full transition-all duration-300 ${
+              className={`px-4 py-1.5 text-sm font-bold rounded-sm transition-all duration-300 ${
                 viewMode === "month"
                   ? "bg-white text-rose-500 shadow-md transform scale-105"
                   : "text-gray-500 hover:text-gray-900"
@@ -81,7 +81,7 @@ export default function Calendar({ dailyTasks }: { dailyTasks?: DailyTask[] }) {
             </button>
             <button
               onClick={() => setViewMode("day")}
-              className={`px-4 py-1.5 text-sm font-bold rounded-full transition-all duration-300 ${
+              className={`px-4 py-1.5 text-sm font-bold rounded-sm transition-all duration-300 ${
                 viewMode === "day"
                   ? "bg-white text-rose-500 shadow-md transform scale-105"
                   : "text-gray-500 hover:text-gray-900"
@@ -95,19 +95,19 @@ export default function Calendar({ dailyTasks }: { dailyTasks?: DailyTask[] }) {
 
           <button
             onClick={() => setCurrentDate(new Date())}
-            className="px-5 py-2 text-sm font-bold text-rose-600 bg-rose-50 hover:bg-rose-100 border border-rose-100 rounded-full transition-colors shadow-sm"
+            className="px-5 py-2 text-sm font-bold text-rose-600 bg-rose-50 hover:bg-rose-100 border border-rose-100 rounded-sm transition-colors shadow-sm"
           >
             Today
           </button>
         </div>
       </header>
 
-      {/* Content Area */}
+      {/* Content Area (calendar) */}
       <div className="flex-1 overflow-hidden p-4">
         {viewMode === "month" ? (
           <div className="flex flex-col h-full gap-4">
             {/* Top: Month Calendar (2/3 height) */}
-            <div className="flex-[2] min-h-0 bg-transparent rounded-3xl overflow-hidden shadow-none">
+            <div className="flex-2 min-h-0 bg-transparent overflow-hidden shadow-none">
               <MonthCalendar
                 currentDate={currentDate}
                 dailyTasks={dailyTasks}
@@ -118,7 +118,7 @@ export default function Calendar({ dailyTasks }: { dailyTasks?: DailyTask[] }) {
             </div>
 
             {/* Bottom: Week Calendar (1/3 height) */}
-            <div className="flex-1 min-h-0 flex flex-col bg-white/50 backdrop-blur-sm rounded-3xl border border-white/60 shadow-md overflow-hidden">
+            <div className="flex-1 min-h-0 flex flex-col bg-white/50 backdrop-blur-sm border border-white/60 shadow-md overflow-hidden">
               {/* Week Navigation Header */}
               <div className="flex items-center justify-between px-6 py-3 border-b border-rose-100/50 shrink-0 bg-linear-to-r from-rose-50/30 to-teal-50/30">
                 <span className="text-sm font-bold text-gray-600 flex items-center gap-2">
@@ -151,7 +151,8 @@ export default function Calendar({ dailyTasks }: { dailyTasks?: DailyTask[] }) {
             </div>
           </div>
         ) : (
-          <div className="h-full bg-white/50 backdrop-blur-sm rounded-3xl border border-white/60 shadow-xl overflow-hidden flex flex-col">
+          // viewMode = day
+          <div className="h-full bg-white/50 backdrop-blur-sm border border-white/60 shadow-xl overflow-hidden flex flex-col">
             {/* Day Navigation Header */}
             <div className="flex items-center justify-between px-6 py-3 border-b border-rose-100/50 shrink-0 bg-linear-to-r from-rose-50/50 to-teal-50/50">
               <span className="text-sm font-bold text-gray-600 flex items-center gap-2">

@@ -34,7 +34,7 @@ export default function WeekCalendar({
   ];
 
   return (
-    <div className="flex flex-col h-full bg-[#f8f1db] backdrop-blur-sm rounded-xl border border-white/50 shadow-sm overflow-hidden">
+    <div className="flex flex-col h-full bg-[#f8f1db] backdrop-blur-sm border border-white/50 shadow-sm overflow-hidden">
       <div className="grid grid-cols-7 flex-1 gap-2 p-2">
         {weekDays.map((day, idx) => {
           const isSelected = isSameDay(day, currentDate);

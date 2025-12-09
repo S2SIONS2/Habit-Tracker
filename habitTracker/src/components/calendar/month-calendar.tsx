@@ -80,10 +80,10 @@ export default function MonthCalendar({
   };
 
   return (
-    <div className="flex flex-col h-full bg-[#f8f1db] backdrop-blur-sm rounded-3xl border-2 border-white shadow-xl overflow-hidden">
-      <div className="p-6 flex items-center justify-between bg-linear-to-r from-rose-50 to-teal-50">
+    <div className="flex flex-col h-full backdrop-blur-sm overflow-hidden bg-white">
+      <div className="p-4 flex items-center justify-between bg-linear-to-r from-rose-50/30 to-teal-50/30">
         <h2 className="text-2xl font-bold text-gray-700 tracking-tight">
-          <span className="text-rose-500">{format(currentDate, "MMMM")}</span>{" "}
+          <span className="text-rose-400">{format(currentDate, "MMMM")}</span>{" "}
           <span className="text-teal-500">{format(currentDate, "yyyy")}</span>
         </h2>
         <div className="flex gap-2">
@@ -101,17 +101,17 @@ export default function MonthCalendar({
           </button>
         </div>
       </div>
-      <div className="grid grid-cols-7 gap-2 p-2 pb-0 sm:p-4 sm:pb-0 bg-white/50">
+      <div className="grid grid-cols-7">
         {weekDays.map((day) => (
           <div
             key={day.label}
-            className={`w-[100px] m-auto flex-1 py-3 text-center text-sm font-bold ${day.color} bg-white rounded-xl shadow-sm border border-gray-100/50 border-rose-300`}
+            className={`w-full m-auto flex-1 py-3 text-center text-sm font-bold ${day.color} bg-white border-b border-t border-slate-200`}
           >
             {day.label}
           </div>
         ))}
       </div>
-      <div className="grid grid-cols-7 gap-2 p-2 sm:p-4 h-full bg-white/50">
+      <div className="grid grid-cols-7 h-full">
         {calendarDays.map((day) => {
           const isCurrentMonth = isSameMonth(day, monthStart);
           const isSelected = isSameDay(day, currentDate);
@@ -121,14 +121,13 @@ export default function MonthCalendar({
             <div
               key={day.toString()}
               className={`
-                flex flex-col p-2 min-h-[60px] transition-all duration-300 relative group
-                rounded-2xl border-2
+                flex flex-col p-2 min-h-[60px] overflow-y-auto transition-all duration-300 relative group border border-slate-100
                 ${
                   !isCurrentMonth
-                    ? "bg-gray-50/50 border-transparent opacity-50 text-gray-400"
+                    ? "bg-white/80 border-transparent opacity-50 text-gray-400"
                     : isSelected
-                    ? "bg-yellow-50 border-rose-200 ring-2 ring-rose-100 shadow-md z-10 scale-[1.02]"
-                    : "bg-white/70 border-transparent hover:border-rose-100 hover:shadow-md hover:-translate-y-0.5"
+                    ? " bg-white border-rose-200 ring-2 ring-rose-100 shadow-md z-10 scale-[1.02]"
+                    : "bg-white hover:border-rose-100 hover:shadow-md hover:-translate-y-0.5"
                 }
               `}
             >
@@ -172,8 +171,8 @@ export default function MonthCalendar({
                         type="button"
                         className="text-rose-500 hover:text-rose-600 w-full cursor-pointer text-xl"
                         onClick={() => {
-                          setCurrentDate(day);
-                          setViewMode("day");
+                          setCurrentDate?.(day);
+                          setViewMode?.("day");
                         }}
                       >
                         +
